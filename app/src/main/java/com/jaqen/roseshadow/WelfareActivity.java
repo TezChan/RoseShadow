@@ -1,5 +1,6 @@
 package com.jaqen.roseshadow;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -32,7 +33,8 @@ public class WelfareActivity extends AppCompatActivity {
         imgWelfare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showWelfare(++pageIndex);
+                //showWelfare(++pageIndex);
+                startActivity(new Intent(WelfareActivity.this, VodActivity.class));
             }
         });
 
