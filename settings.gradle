@@ -1,1 +1,1 @@
-include ':app', ':sopcast'
+include ':app', ':task'

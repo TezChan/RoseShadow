@@ -1,14 +1,16 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
+
     defaultConfig {
-        applicationId "com.jaqen.roseshadow"
         minSdkVersion 19
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
+
     }
     buildTypes {
         release {
@@ -17,19 +19,18 @@ android {
         }
     }
 
-    dataBinding{
+    dataBinding {
         enabled = true
     }
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     compile 'com.android.support:appcompat-v7:25.2.0'
-    compile 'com.github.canaanai:EasyNet:v0.1-alpha'
-    compile 'com.squareup.picasso:picasso:2.3.2'
-    compile 'com.tuyenmonkey:mkloader:1.0.0'
-    compile 'com.android.support:design:25.2.0'
-    compile 'com.android.support:support-v4:25.2.0'
     compile 'com.kelin.mvvmlight:library:1.0.0'
-    compile 'com.unisky:livecomponent:1.0.2'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'org.jetbrains.kotlinx:kotlinx-coroutines-core:0.12'
+    compile 'com.android.support:gridlayout-v7:25.2.0'
+    compile 'com.android.support:support-v4:25.2.0'
 }

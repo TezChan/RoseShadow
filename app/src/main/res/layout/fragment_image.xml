@@ -1,0 +1,27 @@
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.jaqen.roseshadow.fragments.ImageFragment"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="beautifulImage"
+            type="com.jaqen.roseshadow.viewmodels.BeautifulImageViewModel"/>
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            app:longClickCommand="@{beautifulImage.imageLongClicked}"
+            app:uri='@{beautifulImage.imageUrl + "?imageView2/0/w/" + image.getWidth()}'/>
+    </FrameLayout>
+</layout>
+
+

@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Task</string>
+    <string name="time">计时</string>
+    <string name="image_video">图片或视频</string>
+    <string name="describe">说明</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="sound">铃声</string>
+    <string name="shock">震动</string>
+    <string name="comment">说明</string>
+    <string name="default">默认</string>
+    <string name="select">选择</string>
+</resources>

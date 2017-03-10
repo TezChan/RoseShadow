@@ -1,32 +1,26 @@
 package com.jaqen.roseshadow;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.Toast;
+import android.support.v7.app.AppCompatActivity;
 
-import com.laifeng.sopcastsdk.camera.CameraListener;
-import com.laifeng.sopcastsdk.configuration.AudioConfiguration;
 import com.laifeng.sopcastsdk.configuration.CameraConfiguration;
 import com.laifeng.sopcastsdk.configuration.VideoConfiguration;
-import com.laifeng.sopcastsdk.stream.packer.rtmp.RtmpPacker;
 import com.laifeng.sopcastsdk.stream.sender.rtmp.RtmpSender;
 import com.laifeng.sopcastsdk.ui.CameraLivingView;
-import com.laifeng.sopcastsdk.utils.SopCastLog;
-
-import static com.laifeng.sopcastsdk.configuration.AudioConfiguration.DEFAULT_AAC_PROFILE;
-import static com.laifeng.sopcastsdk.configuration.AudioConfiguration.DEFAULT_ADTS;
-import static com.laifeng.sopcastsdk.configuration.AudioConfiguration.DEFAULT_AUDIO_ENCODING;
+import com.unisky.livecomponect.BaseLivingListener;
+import com.unisky.livecomponect.LiveEngine;
+import com.unisky.livecomponect.effects.BeautifyEffect;
 
 public class VodActivity extends AppCompatActivity {
 
-    private static final String url = "rtmp://192.168.3.104/oflaDemo/stream1";
+    private static final String url = "rtmp://192.168.5.11/live/stream";
     private static final int outputVideoWidth = 360;
 
     private CameraLivingView mLFLiveView;
     private RtmpSender mRtmpSender;
     private CameraConfiguration cameraConfiguration;
     private VideoConfiguration mVideoConfiguration;
+    private LiveEngine liveEngine;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +29,7 @@ public class VodActivity extends AppCompatActivity {
 
         mLFLiveView = (CameraLivingView) findViewById(R.id.liveView);
 
-        mLFLiveView.setLivingStartListener(new CameraLivingView.LivingStartListener() {
+        /*mLFLiveView.setLivingStartListener(new CameraLivingView.LivingStartListener() {
             @Override
             public void startError(int error) {
                 Toast.makeText(VodActivity.this, "error", Toast.LENGTH_SHORT).show();
@@ -45,17 +39,32 @@ public class VodActivity extends AppCompatActivity {
             public void startSuccess() {
                 Toast.makeText(VodActivity.this, "success", Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
 
-        initLiveView();
+        /*initLiveView();
         initCamera();
         initVideo();
         initAudio();
         initPacker();
-        initSender();
+        initSender();*/
+        liveEngine = new LiveEngine.Builder(mLFLiveView, url)
+                .cameraType(CameraConfiguration.Facing.BACK)
+                .setEffect(new BeautifyEffect(this))
+                .builder();
+
+        liveEngine.setLivingListener(new BaseLivingListener(){
+            @Override
+            public void onCameraOpenSuccess() {
+                super.onCameraOpenSuccess();
+
+                liveEngine.openLiving();
+            }
+        });
+
+
     }
 
-    private void initCamera(){
+    /*private void initCamera(){
         CameraConfiguration.Builder cameraBuilder = new CameraConfiguration.Builder();
         cameraBuilder.setOrientation(CameraConfiguration.Orientation.PORTRAIT)
                 .setFacing(CameraConfiguration.Facing.BACK)
@@ -153,13 +162,14 @@ public class VodActivity extends AppCompatActivity {
         public void onNetBad() {
 
         }
-    }
+    }*/
 
 
     @Override
     protected void onStart() {
         super.onStart();
-        mLFLiveView.resume();
+        //mLFLiveView.resume();
+        liveEngine.start();
     }
 
     @Override
@@ -170,13 +180,15 @@ public class VodActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        mLFLiveView.pause();
+        //mLFLiveView.pause();
+        liveEngine.stop();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mLFLiveView.stop();
-        mLFLiveView.release();
+        //mLFLiveView.stop();
+        //mLFLiveView.release();
+        liveEngine.destroy();
     }
 }
