@@ -6,16 +6,16 @@
     android:id="@+id/activity_start"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/start_bg"
     tools:context="com.jaqen.roseshadow.StartActivity"
     android:fitsSystemWindows="true">
 
-    <com.tuyenmonkey.mkloader.MKLoader
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        app:mk_type="TwinFishesSpinner"
-        app:mk_color="#1c1c1c"/>
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:lottie_fileName="building_animation.json"
+        app:lottie_loop="true"
+        app:lottie_autoPlay="true"/>
 
     <TextView
         android:layout_width="wrap_content"

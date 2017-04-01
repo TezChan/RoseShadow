@@ -9,6 +9,11 @@
     <string name="sound">铃声</string>
     <string name="shock">震动</string>
     <string name="comment">说明</string>
-    <string name="default">默认</string>
+    <string name="defaultSound">默认</string>
     <string name="select">选择</string>
+    <string name="step_name">命名</string>
+    <string name="media">图片、音频、视频</string>
+    <string name="preview">预览</string>
+    <string name="remove">删除</string>
+    <string name="cancel">取消</string>
 </resources>

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/voice_recorder_bg"
+    android:paddingLeft="2dp"
+    android:paddingRight="2dp">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/voice_recorder_mic" />
+
+
+    <TextView
+        android:id="@+id/text_activity_caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="录音机"
+        android:textColor="#D0D0D0"
+        android:textSize="22sp" />
+
+    <!--文件-->
+
+    <LinearLayout
+        android:id="@+id/recorder_operation_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+
+        <!--打开文件管理器-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/voice_recorder_btn_file"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@mipmap/record_file_pick"
+                android:focusable="true"
+                android:padding="15.0dip"
+                android:scaleType="fitXY" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="打开文件管理器"
+                android:lines="1"
+
+                android:textColor="#D0D0D0"
+                android:textSize="12sp"/>
+        </LinearLayout>
+
+        <!--开始录音-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/voice_recorder_btn_rec"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/voice_recorder_btn_bg_selector"
+                android:focusable="true"
+                android:padding="15.0dip"
+                android:scaleType="fitXY"
+                android:src="@drawable/voice_recorder_icon_rec_selector" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:text="开始录音"
+                android:textSize="12sp"
+                android:textColor="#D0D0D0" />
+        </LinearLayout>
+
+        <!--播放-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+
+            android:orientation="vertical">
+
+            <ImageButton
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/voice_recorder_btn_play"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/voice_recorder_btn_bg_selector"
+                android:focusable="true"
+                android:padding="11.0dip"
+                android:scaleType="fitXY"
+                android:src="@drawable/voice_recorder_icon_play_selector" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:text="播放"
+                android:textSize="12sp"
+                android:textColor="#D0D0D0" />
+        </LinearLayout>
+
+        <!--确定-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <ImageButton
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/voice_recorder_btn_ok"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/voice_recorder_btn_bg_selector"
+                android:focusable="true"
+                android:padding="11.0dip"
+                android:scaleType="fitXY"
+                android:src="@drawable/voice_recorder_icon_ok_selector" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:text="确定"
+                android:textSize="12sp"
+                android:textColor="#D0D0D0" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <!--时间-->
+    <TextView
+        android:id="@+id/voice_recorder_txt_timespan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/recorder_operation_bar"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="5dp"
+        android:textColor="#D0D0D0"
+        android:textIsSelectable="false"
+        android:textSize="32sp" />
+
+    <!--进度条-->
+    <ProgressBar
+        android:id="@+id/voice_recorder_play_progress"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/voice_recorder_txt_timespan"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+        android:progressDrawable="@drawable/progress_bar" />
+</RelativeLayout>

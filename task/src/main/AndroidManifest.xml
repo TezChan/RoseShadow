@@ -3,10 +3,16 @@
           package="com.jaqen.task">
 
     <application
-        android:theme="@style/AppTheme"
-        android:allowBackup="true">
-        <activity
-            android:name=".TaskEditActivity">
+        android:allowBackup="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".TaskEditActivity">
+        </activity>
+        <activity android:name=".TaskItemEditActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
     </application>
 

@@ -20,4 +20,9 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
+    <style name="EditorTitle">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/textColorPrimary</item>
+    </style>
 </resources>
