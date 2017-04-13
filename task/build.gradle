@@ -34,10 +34,15 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     compile project(':base')
     compile 'com.android.support:appcompat-v7:25.3.0'
+    /*compile ('com.kelin.mvvmlight:library:1.0.0'){
+        exclude group: 'me.tatarka.bindingcollectionadapter2'
+    }*/
     compile 'com.kelin.mvvmlight:library:1.0.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'org.jetbrains.kotlinx:kotlinx-coroutines-core:0.12'
     compile 'com.android.support:gridlayout-v7:25.3.0'
     compile 'com.android.support:support-v4:25.3.0'
     kapt 'com.android.databinding:compiler:2.3.0'
+    compile 'com.unisky:videoselector:1.0.0'
+    compile 'com.unisky:imageselector:1.0.4'
 }

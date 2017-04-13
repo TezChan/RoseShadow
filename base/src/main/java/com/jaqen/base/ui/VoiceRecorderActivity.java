@@ -44,6 +44,7 @@ import java.util.Locale;
 
 public class VoiceRecorderActivity extends AppCompatActivity implements View.OnClickListener {
     public static final String KEY_VOICE_FILE = "voice.recorder.file";
+    public static final String KEY_VOICE_NAME = "voice.recorder.name";
 
     private ImageButton mBtnRecord;
     private ImageButton mBtnPlayPause;

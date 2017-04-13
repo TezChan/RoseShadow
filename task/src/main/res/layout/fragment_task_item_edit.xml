@@ -44,7 +44,8 @@
             app:layout_constraintTop_toTopOf="@+id/lbTime"
             app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@mipmap/add_big"
-            app:layout_constraintLeft_toLeftOf="@+id/guideline"/>
+            app:layout_constraintLeft_toLeftOf="@+id/guideline"
+            app:mediaThumb="@{taskItem.mediaInfo}"/>
 
         <EditText
             android:id="@+id/edtDesc"

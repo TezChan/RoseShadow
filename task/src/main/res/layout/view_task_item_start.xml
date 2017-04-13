@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="isEditing"
+            type="Boolean"/>
+        <variable
+            name="cmdStart"
+            type="com.kelin.mvvmlight.command.ReplyCommand"/>
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+
+        <ImageView
+            android:id="@+id/imgStart"
+            android:layout_width="50dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="h,1:1"
+            app:layout_constraintLeft_toLeftOf="@+id/guideline5"
+            app:layout_constraintRight_toLeftOf="@+id/guideline5"
+            app:srcCompat="@drawable/time_node"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5"/>
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="0dp"
+            android:background="@color/colorPrimary"
+            android:layout_marginTop="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginLeft="0dp"
+            app:layout_constraintLeft_toLeftOf="@+id/guideline5"
+            app:layout_constraintRight_toLeftOf="@+id/guideline5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgStart"
+            android:layout_marginBottom="0dp"
+            android:id="@+id/view"/>
+
+        <View
+            android:id="@+id/hotArea"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintBottom_toTopOf="@+id/view"
+            app:layout_constraintRight_toRightOf="@+id/imgStart"
+            app:layout_constraintLeft_toLeftOf="@+id/imgStart"
+            app:layout_constraintTop_toTopOf="@+id/imgStart"
+            app:clickCommand="@{cmdStart}"
+            android:visibility="@{isEditing ? View.INVISIBLE : View.VISIBLE}"/>
+
+        <TextView
+            android:id="@+id/lbStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginTop="0dp"
+            android:text="@string/start"
+            android:textColor="@color/white"
+            android:visibility="@{isEditing ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintBottom_toTopOf="@+id/view"
+            app:layout_constraintLeft_toLeftOf="@+id/imgStart"
+            app:layout_constraintRight_toRightOf="@+id/imgStart"
+            app:layout_constraintTop_toTopOf="@+id/imgStart"/>
+
+        <android.support.constraint.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline5"
+            app:layout_constraintGuide_percent="0.3"
+            android:orientation="vertical"
+            tools:layout_editor_absoluteY="0dp"
+            tools:layout_editor_absoluteX="115dp"/>
+    </android.support.constraint.ConstraintLayout>
+</layout>

@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 
 import com.jaqen.task.R
 import com.jaqen.task.bean.MediaInfo
@@ -49,7 +50,28 @@ class TaskItemEditFragment : Fragment(){
             listener?.onEditCancel()
         }
         dataBinding.imgMedia.setOnClickListener {
-            FileSelectFragment().show(childFragmentManager, "fileSelector")
+            val selector = MediaSelectFragment()
+
+            selector.listener = object : MediaSelectFragment.OnMediaSelectListener{
+                override fun onMediaSelected(media: MediaInfo) {
+                    viewModel.mediaInfo.set(media)
+                }
+
+                override fun onMediaDelete(media: MediaInfo) {
+                    viewModel.mediaInfo.set(null)
+                }
+
+                override fun onPreview(media: MediaInfo) {
+
+                }
+
+                override fun onCancel() {
+                    //Toast.makeText(activity, "取消", Toast.LENGTH_SHORT).show()
+                }
+
+            }
+
+            selector.show(activity.supportFragmentManager, "fileSelector", viewModel.mediaInfo.get())
         }
 
         return rootView
