@@ -8,6 +8,8 @@ import com.jaqen.task.bean.MediaInfo
 import com.jaqen.task.bean.TaskItem
 import com.jaqen.task.utils.TimeUtil
 import com.kelin.mvvmlight.base.ViewModel
+import com.kelin.mvvmlight.command.ReplyCommand
+import rx.functions.Action0
 import java.util.*
 
 /**
@@ -15,6 +17,8 @@ import java.util.*
  * @version 2017-04-11 14:38
  */
 class TaskItemViewModel(val taskItem: TaskItem): ViewModel {
+    val timer = Timer()
+
     val isOverTime = ObservableBoolean(false)
     val isActivited = ObservableBoolean(false)
     val curTime = ObservableField<String>()
@@ -22,7 +26,13 @@ class TaskItemViewModel(val taskItem: TaskItem): ViewModel {
     val desc = ObservableField<String>()
     val media = ObservableField<MediaInfo>()
 
-    val timer = Timer()
+    val cmdEdit = ReplyCommand<Any>(Action0 {
+
+    })
+
+    val cmdRemove = ReplyCommand<Any>(Action0 {
+
+    })
 
     fun setActivited(activited: Boolean){
         isActivited.set(activited)
