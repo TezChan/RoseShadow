@@ -7,6 +7,10 @@ import com.jaqen.task.bean.TaskItem
 import com.jaqen.task.fragments.TaskItemEditFragment
 
 class TaskItemEditActivity : AppCompatActivity() {
+    object RequestData{
+        @JvmStatic
+        val DATA = "data"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

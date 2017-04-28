@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="wordDetailViewModel"
+            type="com.jaqen.roseshadow.viewmodels.WordDetailViewModel"/>
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.jaqen.roseshadow.WordDetailActivity">
+
+        <EditText
+            android:id="@+id/editText2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:inputType="textMultiLine"
+            android:gravity="start|top"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/toolbarBg"
+            android:layout_marginRight="16dp"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginLeft="16dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:background="@null"
+            android:text="@={wordDetailViewModel.word}"
+            android:visibility="@{wordDetailViewModel.isEditting ? View.VISIBLE : View.GONE}"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"/>
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="@{wordDetailViewModel.word}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="16dp"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@+id/toolbarBg"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            android:visibility="@{wordDetailViewModel.isEditting ? View.GONE : View.VISIBLE}"/>
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/toolbarBg"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            android:background="@{wordDetailViewModel.bgColorTitle}">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:popupTheme="@style/AppTheme.PopupOverlay">
+                <Button
+                    android:layout_width="@dimen/titleButtonSize"
+                    android:layout_height="@dimen/titleButtonSize"
+                    android:background="@drawable/ic_close_black_24dp"
+                    android:visibility="@{wordDetailViewModel.isEditting ? View.VISIBLE : View.GONE}"
+                    app:clickCommand="@{wordDetailViewModel.cmdCancelEdit}"/>
+                <Button
+                    android:layout_width="@dimen/titleButtonSize"
+                    android:layout_height="@dimen/titleButtonSize"
+                    android:background="@drawable/ic_arrow_back_black_24dp"
+                    app:clickCommand="@{wordDetailViewModel.cmdClose}"
+                    android:visibility="@{wordDetailViewModel.isEditting ? View.GONE : View.VISIBLE}"/>
+                <TextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="20sp"
+                    android:text="心语"
+                    android:textColor="@android:color/background_light"/>
+                <Button
+                    android:layout_width="@dimen/titleButtonSize"
+                    android:layout_height="@dimen/titleButtonSize"
+                    android:background="@drawable/ic_check_black_24dp"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:layout_gravity="end"
+                    app:clickCommand="@{wordDetailViewModel.cmdSave}"
+                    android:visibility="@{wordDetailViewModel.isEditting ? View.VISIBLE : View.GONE}"/>
+                <Button
+                    android:layout_width="@dimen/titleButtonSize"
+                    android:layout_height="@dimen/titleButtonSize"
+                    android:background="@drawable/ic_mode_edit_black_24dp"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:layout_gravity="end"
+                    app:clickCommand="@{wordDetailViewModel.cmdEdit}"
+                    android:visibility="@{wordDetailViewModel.isEditting ? View.GONE : View.VISIBLE}"/>
+            </android.support.v7.widget.Toolbar>
+
+        </android.support.design.widget.AppBarLayout>
+    </android.support.constraint.ConstraintLayout>
+</layout>
+

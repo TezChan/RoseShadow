@@ -12,6 +12,9 @@
         <variable
             name="cmdEnd"
             type="com.kelin.mvvmlight.command.ReplyCommand"/>
+        <variable
+            name="viewModel"
+            type="com.jaqen.task.viewmodels.BaseItemViewModel"/>
     </data>
 
     <android.support.constraint.ConstraintLayout

@@ -8,12 +8,15 @@ import com.canaanai.net.EasyNet;
 import com.canaanai.net.NetAction;
 import com.canaanai.net.SimpleIndeterminateProgress;
 import com.jaqen.roseshadow.WebActivity;
+import com.jaqen.roseshadow.models.bean.FlingData;
 import com.jaqen.roseshadow.models.bean.GankContent;
 import com.jaqen.roseshadow.models.bean.GankData;
+import com.jaqen.roseshadow.models.bean.GankHistory;
 import com.kelin.mvvmlight.base.ViewModel;
 import com.kelin.mvvmlight.command.ReplyCommand;
 
 import rx.functions.Action0;
+import rx.functions.Action1;
 
 /**
  * @author chenp
@@ -24,17 +27,30 @@ public class BeautifulImageViewModel implements ViewModel{
     private GankContent gankContent;
     private EasyNet easyNet;
     private Activity activity;
+    private int index = 1;
+
 
     public final ObservableField<String> imageUrl = new ObservableField<>();
 
     public final ReplyCommand imageLongClicked = new ReplyCommand(new Action0() {
         @Override
         public void call() {
-            Intent intent = new Intent(activity, WebActivity.class);
+            getWebUrl();
+        }
+    });
 
-            intent.putExtra(WebActiviryViewModel.EXTRA_TITLE, "干客集中营");
-            intent.putExtra(WebActiviryViewModel.EXTRA_URL, "http://gank.io/");
-            activity.startActivity(intent);
+    public ReplyCommand<FlingData> cmdImgFling = new ReplyCommand<>(new Action1<FlingData>() {
+        @Override
+        public void call(FlingData flingData) {
+            if (flingData.getVelocityX() < 0){
+                index ++;
+
+                requestData();
+            }else if (flingData.getVelocityX() > 0 && index > 1) {
+                index --;
+
+                requestData();
+            }
         }
     });
 
@@ -53,7 +69,7 @@ public class BeautifulImageViewModel implements ViewModel{
                 .workOnMainThread()
                 .showProgress()
                 .workOnSubThread()
-                .doGet(String.valueOf(1), GankData.class)
+                .doGet(String.valueOf(index), GankData.class)
                 .doNext(new NetAction<GankData>() {
                     @Override
                     public void call(GankData gankData) {
@@ -63,6 +79,27 @@ public class BeautifulImageViewModel implements ViewModel{
                 })
                 .workOnMainThread()
                 .hideProgress()
+                .start();
+    }
+
+    public void getWebUrl(){
+        easyNet.request("webUrl", null)
+                .workOnSubThread()
+                .doGet("http://gank.io/api/day/history", GankHistory.class)
+                .workOnMainThread()
+                .doNext(new NetAction<GankHistory>() {
+                    @Override
+                    public void call(GankHistory gankHistory) {
+                        if (!gankHistory.isError()){
+                            Intent intent = new Intent(activity, WebActivity.class);
+
+                            intent.putExtra(WebActiviryViewModel.EXTRA_TITLE, "干客集中营");
+                            intent.putExtra(WebActiviryViewModel.EXTRA_URL, "http://gank.io/"
+                                    + gankHistory.getResults().get(index - 1).replace("-", "/"));
+                            activity.startActivity(intent);
+                        }
+                    }
+                })
                 .start();
     }
 }

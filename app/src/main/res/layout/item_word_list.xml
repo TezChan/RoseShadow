@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="itemViewModel"
+            type="com.jaqen.roseshadow.viewmodels.WordItemViewModel"/>
+    </data>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginLeft="2dp"
+        app:cardElevation="1dp">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/backgroundLight">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="@{itemViewModel.wordContent}"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:textColor="@color/textColorPimary"
+                android:layout_marginRight="16dp"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginLeft="16dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="16dp"
+                app:layout_constraintVertical_bias="0.0"
+                app:layout_constraintBottom_toTopOf="@+id/textView2"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:singleTapCommand="@{itemViewModel.cmdDetail}"
+                app:longClickCommand="@{itemViewModel.cmdShowAction}"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"/>
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="@{itemViewModel.date}"
+                android:layout_marginRight="16dp"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginLeft="16dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:textSize="12sp"
+                android:layout_marginBottom="8dp"/>
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/colorAccent"
+                android:text="@string/delete"
+                android:textColor="@android:color/primary_text_dark"
+                android:visibility="@{itemViewModel.isActionShowing ? View.VISIBLE : View.GONE}"
+                app:clickCommand="@{itemViewModel.cmdDelete}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/button2"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0"/>
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@android:color/holo_blue_light"
+                android:text="@{itemViewModel.isSetToStart ? @string/set_start : @string/cancel_start}"
+                android:textColor="@android:color/primary_text_dark"
+                android:visibility="@{itemViewModel.isActionShowing ? View.VISIBLE : View.GONE}"
+                app:clickCommand="@{itemViewModel.cmdSetStart}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintLeft_toRightOf="@+id/button"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/button"
+                app:layout_constraintVertical_bias="0.0"/>
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.CardView>
+</layout>

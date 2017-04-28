@@ -15,6 +15,10 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Slideshow"/>-->
         <item
+            android:id="@+id/navWords"
+            android:icon="@drawable/ic_brush_black_24dp"
+            android:title="心语"/>
+        <item
             android:id="@+id/navManage"
             android:icon="@drawable/ic_menu_manage"
             android:title="调教"/>

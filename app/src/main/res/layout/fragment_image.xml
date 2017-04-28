@@ -8,9 +8,14 @@
         <variable
             name="beautifulImage"
             type="com.jaqen.roseshadow.viewmodels.BeautifulImageViewModel"/>
+
+        <variable
+            name="cmdImageDoubleClicked"
+            type="com.kelin.mvvmlight.command.ReplyCommand"/>
     </data>
 
     <FrameLayout
+        android:id="@+id/rootView"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -19,7 +24,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
+            android:layout_gravity="center"
             app:longClickCommand="@{beautifulImage.imageLongClicked}"
+            app:doubleClickCommand="@{cmdImageDoubleClicked}"
+            app:flingCommand="@{beautifulImage.cmdImgFling}"
             app:uri='@{beautifulImage.imageUrl + "?imageView2/0/w/" + image.getWidth()}'/>
     </FrameLayout>
 </layout>

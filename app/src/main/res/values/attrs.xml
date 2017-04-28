@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <attr name="longClickCommand" format="reference"/>
-    <declare-styleable name="View"><attr name="longClickCommand"/></declare-styleable>
+    <attr name="doubleClickCommand" format="reference"/>
+    <attr name="flingCommand" format="reference"/>
+    <attr name="singleTapCommand" format="reference"/>
+
+    <declare-styleable name="View">
+        <attr name="longClickCommand"/>
+        <attr name="doubleClickCommand"/>
+        <attr name="flingCommand"/>
+        <attr name="singleTapCommand"/>
+    </declare-styleable>
 </resources>

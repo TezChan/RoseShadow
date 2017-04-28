@@ -21,6 +21,7 @@ import android.view.MenuItem;
 
 import com.jaqen.roseshadow.colors.NipponColor;
 import com.jaqen.roseshadow.fragments.ImageFragment;
+import com.jaqen.roseshadow.fragments.WordListFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity
     private FragmentManager fragmentManager;
 
     private ImageFragment imageFragment;
+    private WordListFragment wordListFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +68,7 @@ public class MainActivity extends AppCompatActivity
         fragmentManager.beginTransaction()
                 .replace(R.id.contentMain, imageFragment)
                 .commit();
+        setTitle("美图");
     }
 
     @Override
@@ -110,8 +113,19 @@ public class MainActivity extends AppCompatActivity
             fragmentManager.beginTransaction()
                     .replace(R.id.contentMain, imageFragment)
                     .commit();
+
+            setTitle("美图");
         }else if (id == R.id.navManage){
 
+        }else if (id == R.id.navWords){
+            if (wordListFragment == null)
+                wordListFragment = new WordListFragment();
+
+            fragmentManager.beginTransaction()
+                    .replace(R.id.contentMain, wordListFragment)
+                    .commit();
+
+            setTitle("心语");
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

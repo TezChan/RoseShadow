@@ -3,19 +3,7 @@
           package="com.jaqen.task">
 
     <application
-        android:allowBackup="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".TaskEditActivity">
-        </activity>
-        <activity android:name=".TaskItemEditActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
-
-        <activity android:name="com.jaqen.base.ui.VoiceRecorderActivity"/>
+        android:allowBackup="true">
     </application>
 
 </manifest>

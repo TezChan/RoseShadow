@@ -15,4 +15,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="delete">删除</string>
+    <string name="set_start">设为启动</string>
+    <string name="cancel_start">取消启动</string>
 </resources>

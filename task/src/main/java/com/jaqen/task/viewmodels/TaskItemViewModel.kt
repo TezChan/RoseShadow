@@ -9,6 +9,7 @@ import com.jaqen.task.bean.TaskItem
 import com.jaqen.task.utils.TimeUtil
 import com.kelin.mvvmlight.base.ViewModel
 import com.kelin.mvvmlight.command.ReplyCommand
+import com.kelin.mvvmlight.messenger.Messenger
 import rx.functions.Action0
 import java.util.*
 
@@ -16,7 +17,16 @@ import java.util.*
  * @author chenp
  * @version 2017-04-11 14:38
  */
-class TaskItemViewModel(val taskItem: TaskItem): ViewModel {
+class TaskItemViewModel(val taskItem: TaskItem): BaseItemViewModel() {
+
+    /*companion object{
+        val MESSAGE_TOKEN_EDIT = "taskItemEdit"
+        val MESSAGE_TOKEN_REMOVE = "taskItemRemove"
+        val MESSAGE_TOKEN_ITEM_START = "taskItemStart"
+        val MESSAGE_TOKEN_ITEM_END = "taskItemEnd"
+    }*/
+
+    var listener: TaskItemControlListener? = null
     val timer = Timer()
 
     val isOverTime = ObservableBoolean(false)
@@ -26,12 +36,16 @@ class TaskItemViewModel(val taskItem: TaskItem): ViewModel {
     val desc = ObservableField<String>()
     val media = ObservableField<MediaInfo>()
 
-    val cmdEdit = ReplyCommand<Any>(Action0 {
+    var itemIndex = -1;
 
+    val cmdEdit = ReplyCommand<Any>(Action0 {
+        //Messenger.getDefault().send(itemIndex, MESSAGE_TOKEN_EDIT)
+        listener?.onItemEdited(itemIndex)
     })
 
     val cmdRemove = ReplyCommand<Any>(Action0 {
-
+        //Messenger.getDefault().send(itemIndex, MESSAGE_TOKEN_REMOVE)
+        listener?.onItemRemoved(itemIndex)
     })
 
     fun setActivited(activited: Boolean){
@@ -43,8 +57,11 @@ class TaskItemViewModel(val taskItem: TaskItem): ViewModel {
             override fun onPropertyChanged(p0: Observable?, p1: Int) {
                 if (isActivited.get()){
                     timer.schedule(ItemIimerTask(taskItem.time), 0, 1000)
+                    //Messenger.getDefault().send()
                 }else{
                     timer.cancel()
+                    //Messenger.getDefault().send(itemIndex, MESSAGE_TOKEN_ITEM_END)
+                    listener?.onTimeEnd(itemIndex)
                 }
             }
         })
@@ -65,5 +82,12 @@ class TaskItemViewModel(val taskItem: TaskItem): ViewModel {
                 isActivited.set(false)
             }
         }
+    }
+
+    interface TaskItemControlListener{
+        fun onItemEdited(position: Int)
+        fun onItemRemoved(position: Int)
+        fun onTimeStart()
+        fun onTimeEnd(position: Int)
     }
 }

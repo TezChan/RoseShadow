@@ -5,9 +5,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
+        <import type="android.view.View"/>
         <variable
             name="taskItem"
             type="com.jaqen.task.viewmodels.TaskItemViewModel"/>
+
+        <variable
+            name="isEditing"
+            type="Boolean"/>
     </data>
 
     <android.support.constraint.ConstraintLayout
@@ -108,7 +113,9 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="8dp"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintVertical_bias="1.0"/>
+            app:layout_constraintVertical_bias="1.0"
+            android:visibility="@{isEditing ? View.VISIBLE : View.INVISIBLE}"
+            app:clickCommand="@{taskItem.cmdEdit}"/>
 
         <TextView
             android:id="@+id/btnRemove"
@@ -116,7 +123,6 @@
             android:layout_height="wrap_content"
             android:text="@string/remove"
             app:layout_constraintRight_toLeftOf="@+id/view_line"
-            android:layout_marginRight="0dp"
             app:layout_constraintLeft_toRightOf="@+id/btnEdit"
             android:layout_marginLeft="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -124,6 +130,8 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="8dp"
             app:layout_constraintVertical_bias="1.0"
-            app:layout_constraintHorizontal_bias="0.0"/>
+            app:layout_constraintHorizontal_bias="0.0"
+            android:visibility="@{isEditing ? View.VISIBLE : View.INVISIBLE}"
+            app:clickCommand="@{taskItem.cmdRemove}"/>
     </android.support.constraint.ConstraintLayout>
 </layout>
