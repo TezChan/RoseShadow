@@ -19,6 +19,14 @@
             android:icon="@drawable/ic_brush_black_24dp"
             android:title="心语"/>
         <item
+            android:id="@+id/navFish"
+            android:icon="@drawable/ic_adb_black_24dp"
+            android:title="小鱼"/>
+        <item
+            android:id="@+id/navGame"
+            android:icon="@drawable/ic_videogame_asset_black_24dp"
+            android:title="游戏"/>
+        <item
             android:id="@+id/navManage"
             android:icon="@drawable/ic_menu_manage"
             android:title="调教"/>

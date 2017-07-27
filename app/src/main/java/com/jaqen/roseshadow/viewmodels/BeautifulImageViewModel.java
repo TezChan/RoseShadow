@@ -8,7 +8,7 @@ import com.canaanai.net.EasyNet;
 import com.canaanai.net.NetAction;
 import com.canaanai.net.SimpleIndeterminateProgress;
 import com.jaqen.roseshadow.WebActivity;
-import com.jaqen.roseshadow.models.bean.FlingData;
+import com.jaqen.base.bindingadapters.bean.FlingData;
 import com.jaqen.roseshadow.models.bean.GankContent;
 import com.jaqen.roseshadow.models.bean.GankData;
 import com.jaqen.roseshadow.models.bean.GankHistory;

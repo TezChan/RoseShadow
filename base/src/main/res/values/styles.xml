@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="BaseAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="cBaseToolbarButtonWidth">48dp</item>
+        <item name="cBaseToolbarButtonHeight">48dp</item>
+        <item name="cBaseToolbarButtonTextSize">16sp</item>
+        <item name="cBaseToolbarTitleSize">18sp</item>
+        <item name="cBaseToolbarTitleColor">@android:color/primary_text_light</item>
+        <item name="cBaseToolbarButtonTextColor">@android:color/primary_text_light</item>
+        <item name="cBaseToolbarFitsSystemWindows">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+</resources>

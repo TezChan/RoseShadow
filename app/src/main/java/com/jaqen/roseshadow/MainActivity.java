@@ -19,18 +19,23 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.badlogic.gdx.backends.android.AndroidFragmentApplication;
+import com.jaqen.game.GameMainFragment;
 import com.jaqen.roseshadow.colors.NipponColor;
+import com.jaqen.roseshadow.fragments.FishFragment;
 import com.jaqen.roseshadow.fragments.ImageFragment;
 import com.jaqen.roseshadow.fragments.WordListFragment;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, AndroidFragmentApplication.Callbacks {
 
     private DrawerLayout drawer;
     private FragmentManager fragmentManager;
 
     private ImageFragment imageFragment;
     private WordListFragment wordListFragment;
+    private FishFragment fishFragment;
+    private GameMainFragment gameMainFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,6 +131,24 @@ public class MainActivity extends AppCompatActivity
                     .commit();
 
             setTitle("心语");
+        }else if (id == R.id.navFish){
+            if (fishFragment == null)
+                fishFragment = new FishFragment();
+
+            fragmentManager.beginTransaction()
+                    .replace(R.id.contentMain, fishFragment)
+                    .commit();
+
+            setTitle("小鱼");
+        }else if (id == R.id.navGame){
+            if (gameMainFragment == null)
+                gameMainFragment = new GameMainFragment();
+
+            fragmentManager.beginTransaction()
+                    .replace(R.id.contentMain, gameMainFragment)
+                    .commit();
+
+            setTitle("游戏");
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -133,4 +156,7 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    @Override
+    public void exit() {
+    }
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="cBaseToolbarButtonWidth" format="dimension"/>
+    <attr name="cBaseToolbarButtonHeight" format="dimension"/>
+    <attr name="cBaseToolbarButtonTextSize" format="dimension"/>
+    <attr name="cBaseToolbarTitleSize" format="dimension"/>
+    <attr name="cBaseToolbarTitleColor" format="color"/>
+    <attr name="cBaseToolbarButtonTextColor" format="color"/>
+    <attr name="cBaseToolbarFitsSystemWindows" format="boolean"/>
+    <attr name="thumbOf" format="string"/>
+    <attr name="focusChangedCommand" format="reference"/>
+
+    <declare-styleable name="ImageView">
+        <attr name="thumbOf"/>
+    </declare-styleable>
+
+    <declare-styleable name="View">
+        <attr name="focusChangedCommand"/>
+    </declare-styleable>
+</resources>
