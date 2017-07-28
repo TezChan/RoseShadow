@@ -2,9 +2,11 @@ package com.jaqen.game.core.tetris;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 
 /**
  * @author chenp
@@ -12,27 +14,28 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
  */
 
 public class TetrisMain extends ApplicationAdapter{
-    SpriteBatch batch;
-    Texture img;
+
+    public static final int COLUMN_SIZE = 20;
+
+    private Actor[] boxs;
+    private Shape currentShape;
+    private Shape nextShape;
 
     @Override
     public void create () {
-        batch = new SpriteBatch();
-        img = new Texture("badlogic.jpg");
+        float ptsRatio = Gdx.graphics.getWidth() / 3 / COLUMN_SIZE;
+
+        currentShape = new Shape(ptsRatio);
+        nextShape = new Shape(ptsRatio);
+
+        boxs = new Actor[(int) (Gdx.graphics.getHeight() / ptsRatio)];
     }
 
     @Override
     public void render () {
-        Gdx.gl.glClearColor(1, 0, 0, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        batch.begin();
-        batch.draw(img, 0, 0);
-        batch.end();
     }
 
     @Override
     public void dispose () {
-        batch.dispose();
-        img.dispose();
     }
 }
