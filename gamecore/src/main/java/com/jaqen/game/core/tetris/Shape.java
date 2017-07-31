@@ -82,26 +82,26 @@ public class Shape {
         return null;
     }
 
-    public void moveBy(Actor[] shape, int x, int y){
-        int size = shape.length;
+    public void moveBy(int x, int y){
+        int size = tetris.length;
 
         for (int i = 0; i < size; i ++){
             MoveByAction moveByAction = Actions.moveBy(ptsRatio * x, ptsRatio * y);
 
-            shape[i].addAction(moveByAction);
+            tetris[i].addAction(moveByAction);
         }
 
         this.x += x;
         this.y += y;
     }
 
-    public void rotate(Actor[] shape, int shapeType, int toRotate){
-        int fixedToRotate = toRotate % shapeDatas[shapeType].length;
+    public void rotateBy(int delta){
+        int fixedToRotate = (shapeRotate + delta) % shapeDatas[shapeType].length;
         int[] shapeData = shapeDatas[shapeType][fixedToRotate];
-        int size = shape.length;
+        int size = tetris.length;
 
         for (int i = 0; i < size; i ++){
-            shape[i].setPosition(ptsRatio * (x + shapeData[i - 1]), ptsRatio * (y + shapeData[i]));
+            tetris[i].setPosition(ptsRatio * (x + shapeData[i - 1]), ptsRatio * (y + shapeData[i]));
         }
     }
 

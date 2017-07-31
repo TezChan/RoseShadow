@@ -20,22 +20,37 @@ public class TetrisMain extends ApplicationAdapter{
     private Actor[] boxs;
     private Shape currentShape;
     private Shape nextShape;
+    private AssetManager assetManager;
+    private SpriteBatch spriteBatch;
 
     @Override
     public void create () {
         float ptsRatio = Gdx.graphics.getWidth() / 3 / COLUMN_SIZE;
 
-        currentShape = new Shape(ptsRatio);
+        /*currentShape = new Shape(ptsRatio);
         nextShape = new Shape(ptsRatio);
 
-        boxs = new Actor[(int) (Gdx.graphics.getHeight() / ptsRatio)];
+        boxs = new Actor[((int) (Gdx.graphics.getHeight() / ptsRatio) + 1) * 20];*/
+        spriteBatch = new SpriteBatch();
+        assetManager = new AssetManager();
+
+        assetManager.load("icon.png", Texture.class);
+    }
+
+    protected void loadRes(){
+        Texture texture = assetManager.get("icon.png", Texture.class);
+
+
     }
 
     @Override
     public void render () {
+
     }
 
     @Override
     public void dispose () {
     }
+
+
 }
